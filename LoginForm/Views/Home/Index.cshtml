@@ -1,0 +1,40 @@
+﻿@{
+    ViewData["Title"] = "Home Page";
+}
+<div class="text-center">
+    <h1 class="display-4">Welcome</h1>
+    <p>Learn about <a href="https://docs.microsoft.com/aspnet/core">building Web apps with ASP.NET Core</a>.</p>
+</div>
+@if (ViewData.Count > 0)
+{
+	<table class="table table-bordered table-sm table-striped">
+		@foreach (var kvp in ViewData)
+		{
+			<tr><td>@kvp.Key</td><td>@kvp.Value</td></tr>
+		}
+	</table>
+}
+<table class="table table-bordered table-sm table-striped">
+	<thead>
+		<tr><th>Id</th><th>Name</th><th>Quantity</th><th>Price($)</th><th>Total</th></tr>
+	</thead>
+	<tbody>
+		@if (Model == null)
+		{
+			<tr><td colspan="3" class="text-center">No Model Data</td></tr>
+		}
+		else
+		{
+			@foreach (var p in Model)
+			{
+				<tr>
+					<td>@p.Id</td>
+					<td>@p.Name</td>
+					<td>@p.Quantity</td>
+					<td>@string.Format("{0:C2}",p.Price)</td>
+					<td>@string.Format("{0:C2}",p.TotalPrice)</td>
+				</tr>
+			}
+		}
+	</tbody>
+</table>
